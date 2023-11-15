@@ -1,7 +1,7 @@
 const ValueUnit = ({className, value, unit}) => {
     return (
         <p className={className}>
-            {value} <span>{unit}</span>
+            {value}<span>{unit}</span>
         </p>
     );
 };

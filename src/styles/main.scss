@@ -36,6 +36,12 @@
     }
 }
 
+.current_weather {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
+    gap: 1rem;
+}
+
 // SEARCH FORM
 
 .search_form {
@@ -149,4 +155,24 @@
     span {
         font-size: 1.6rem;
     }
+}
+
+// MINMAX TEMP
+
+.minmax_temp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    color: $font-color;
+}
+
+// HIGHLIGHTS
+
+.highlights {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
