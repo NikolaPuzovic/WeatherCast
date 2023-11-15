@@ -36,6 +36,14 @@
     }
 }
 
+.main_content {
+    padding: 1rem;
+    margin: auto;
+    max-width: 80rem;
+    display: grid;
+    gap: 1rem;
+}
+
 .current_weather {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));

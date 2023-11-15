@@ -1,11 +1,11 @@
 import Header from './components/Header';
-import CurrentWeather from './components/CurrentWeather';
+import MainContent from './components/MainContent';
 
 const App = () => {
     return (
         <div className='app_container'>
             <Header/>
-            <CurrentWeather/>
+            <MainContent/>
         </div>
     );
 };
