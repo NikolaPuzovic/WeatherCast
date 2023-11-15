@@ -190,3 +190,14 @@
     justify-items: center;
     align-items: center;
 }
+
+@media screen and (min-width: 37.5rem) {
+    .header_container {
+        @include center_content;
+        gap: 1rem;
+
+        & > *:first-child {
+            margin-right: 0;
+        }
+    }
+}
