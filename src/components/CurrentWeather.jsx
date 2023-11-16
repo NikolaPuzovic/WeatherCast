@@ -1,3 +1,16 @@
+// CONTEXT
+
+import { useWeatherData } from '../context/WeatherContext';
+import { useUnitType } from '../context/UnitContext';
+
+// UTILITY FUNCTIONS
+
+import roundNumber from '../utility/roundNumber';
+import getWeatherDescription from '../utility/getWeatherDescription';
+import getIcon from '../utility/getIcon';
+import convertToImperial from '../utility/convertToImperial';
+import getWindDirection from '../utility/getWindDirection';
+
 // COMPONENTS
 
 import Card from './Card';
@@ -9,25 +22,59 @@ import Highlights from './Highlights';
 
 // ICONS
 
-import humidity from '../assets/humidity.svg';
-import pressure from '../assets/pressure.svg';
-import wind from '../assets/wind.svg';
-import direction from '../assets/direction.svg';
-import partly_cloudy from '../assets/partly_cloudy.svg';
+import humidity_icon from '../assets/humidity.svg';
+import pressure_icon from '../assets/pressure.svg';
+import wind_icon from '../assets/wind.svg';
+import direction_icon from '../assets/direction.svg';
+
 
 const CurrentWeather = () => {
+
+    let {
+        weatherData: {
+            current: {
+                temperature_2m: currentTemp,
+                weather_code,
+                relative_humidity_2m: humidity,
+                pressure_msl: pressure,
+                wind_speed_10m: windSpeed,
+                wind_direction_10m: windDirection
+            },
+            daily: {
+                temperature_2m_min,
+                temperature_2m_max
+            }
+        },
+        locationData: {
+            city 
+        }
+    } = useWeatherData();
+
+    let minTemp = temperature_2m_min[0];
+    let maxTemp = temperature_2m_max[0];
+
+    const { unitType } = useUnitType();
+
+    if(unitType === 'imperial') {
+        currentTemp = convertToImperial(currentTemp, 'celsius');
+        pressure = convertToImperial(pressure, 'pa');
+        windSpeed = convertToImperial(windSpeed, 'km/h');
+        minTemp = convertToImperial(temperature_2m_min[0], 'celsius');
+        maxTemp = convertToImperial(temperature_2m_max[0], 'celsius'); 
+    }
+
 
     const locationCard = (
         <Card className='card'>
             <Text className='text_large'>
-                Novi Sad
+                {city}
             </Text>
             <Text className='text_small'>
                 Today 12 Dec
             </Text>
             <ValueUnit
                 className='large'
-                value={13}
+                value={roundNumber(currentTemp)}
                 unit='°C'
             />
         </Card>
@@ -36,18 +83,18 @@ const CurrentWeather = () => {
     const weatherConditionCard = (
         <Card className='card'>
             <Text className='text_small'>
-                Partly Cloudy
+                {getWeatherDescription(weather_code)}
             </Text>
             <Icon
                 className='icon_large'
-                src={partly_cloudy}
-                alt='sample'
+                src={getIcon(weather_code)}
+                alt='weather icon'
             />
             <MinMaxTemp
                 className='minmax_temp'
-                min={5}
-                max={15}
-                unit='°C'
+                min={roundNumber(minTemp)}
+                max={roundNumber(maxTemp)}
+                unit={unitType === 'imperial' ? '°F' : '°C'}
             />
         </Card>
     );
@@ -55,27 +102,27 @@ const CurrentWeather = () => {
     const highlightsCard = (
         <Card className='card'>
             <Highlights
-                icon={humidity}
+                icon={humidity_icon}
                 text='Humidity'
-                value={75}
+                value={humidity}
                 unit='%'
             />
             <Highlights
-                icon={pressure}
+                icon={pressure_icon}
                 text='Pressure'
-                value={1205}
-                unit='Pa'
+                value={pressure}
+                unit={unitType === 'imperial' ? 'psi' : 'Pa'}
             />
             <Highlights
-                icon={wind}
+                icon={wind_icon}
                 text='Wind Speed'
-                value={42}
-                unit='km/h'
+                value={windSpeed}
+                unit={unitType === 'imperial' ? 'mph': 'km/h'}
             />
             <Highlights
-                icon={direction}
+                icon={direction_icon}
                 text='Wind Direction'
-                value='S'
+                value={getWindDirection(windDirection)}
                 unit=''
             />
         </Card>

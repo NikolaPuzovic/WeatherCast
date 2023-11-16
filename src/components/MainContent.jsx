@@ -1,11 +1,19 @@
 import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
+import { useWeatherData } from '../context/WeatherContext';
 
 const MainContent = () => {
+
+    const { weatherData } = useWeatherData();
+    
     return (
         <main className='main_content'>
-            <CurrentWeather/>
-            <Forecast/>
+            {weatherData.current &&
+                <>
+                    <CurrentWeather/>
+                    <Forecast/>
+                </>
+            }
         </main>
     );
 };
