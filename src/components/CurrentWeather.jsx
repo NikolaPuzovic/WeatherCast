@@ -75,7 +75,7 @@ const CurrentWeather = () => {
             <ValueUnit
                 className='large'
                 value={roundNumber(currentTemp)}
-                unit='°C'
+                unit={unitType === 'imperial' ? '°F' : '°C'}
             />
         </Card>
     );

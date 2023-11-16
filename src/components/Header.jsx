@@ -1,3 +1,7 @@
+// CONTEXT
+
+import { useUnitType } from '../context/UnitContext';
+
 //  COMPONENTS
 
 import Icon from './Icon';
@@ -9,8 +13,12 @@ import SearchForm from './SearchForm';
 import logo from '../assets/weathercast.svg';
 import location from '../assets/location.svg';
 import fahrenheit from '../assets/fahrenheit.svg';
+import celsius from '../assets/celsius.svg';
 
 const Header = () => {
+
+    const { unitType, toggleUnitType } = useUnitType();
+
     return (
         <header className='header_container'>
             <Icon
@@ -25,10 +33,13 @@ const Header = () => {
                     alt='location icon'
                 />
             </Button>
-            <Button className='button'>
+            <Button
+                className='button'
+                onClick={toggleUnitType}
+            >
                 <Icon
-                    src={fahrenheit}
-                    alt='fahrenheit icon'
+                    src={unitType === 'imperial' ? celsius : fahrenheit}
+                    alt='unit icon'
                 />
             </Button>
         </header>

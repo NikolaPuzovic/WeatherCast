@@ -8,7 +8,7 @@ const convertToImperial = (value, unitType) => {
     }
 
     if(unitType === 'km/h' || unitType === 'Km/h') {
-        return value * 0.621371;
+        return Number((value * 0.621371).toFixed(1));
     }
 };
 
