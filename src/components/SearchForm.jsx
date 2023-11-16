@@ -33,12 +33,9 @@ const SearchForm = () => {
         e.preventDefault();
         
         const locationName = capitalizeWords(inputValue);
-        console.log(locationName);
 
         const cities = citiesArray.filter(location => location.name === locationName);
         const sortedCities = cities.sort((a, b) => b.pop - a.pop);
-
-        console.log(sortedCities);
         
         const {lat, lon} = sortedCities[0];
 
