@@ -3,6 +3,11 @@
 import { useUnitType } from '../context/UnitContext';
 import { useWeatherData } from '../context/WeatherContext';
 
+// UTILITY FUNCTIONS
+
+import getLocation from '../utility/getLocation';
+import setCurrentLocation from '../utility/setCurrentLocation';
+
 //  COMPONENTS
 
 import Icon from './Icon';
@@ -19,6 +24,14 @@ import celsius from '../assets/celsius.svg';
 const Header = () => {
 
     const { unitType, toggleUnitType } = useUnitType();
+    const { setCoordinates } = useWeatherData();
+
+    const goToUserLocation = () => {
+        getLocation(
+            (coordsObj) => setCurrentLocation(coordsObj, setCoordinates),
+            (error) => alert(error)
+        );
+    };
 
     return (
         <header className='header_container'>
@@ -28,7 +41,10 @@ const Header = () => {
                 alt='weathercast'
             />
             <SearchForm/>
-            <Button className='button'>
+            <Button
+                className='button'
+                onClick={goToUserLocation}
+            >
                 <Icon
                     src={location}
                     alt='location icon'

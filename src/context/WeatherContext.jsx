@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import setCurrentLocation from '../utility/setCurrentLocation';
 import checkForError from '../utility/checkForError';
 import parseJson from '../utility/parseJson';
+import getLocation from '../utility/getLocation';
 
 const WeatherContext = createContext(null);
 
@@ -12,7 +13,7 @@ export const WeatherDataProvider = ({children}) => {
     const [locationData, setLocationData] = useState(null);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
+        getLocation(
             (coordsObj) => setCurrentLocation(coordsObj, setCoordinates),
             (error) => alert(error)
         );
