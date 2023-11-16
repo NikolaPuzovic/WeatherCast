@@ -4,7 +4,7 @@ const convertToImperial = (value, unitType) => {
     }
 
     if(unitType === 'pa' || unitType === 'Pa') {
-        return Number((value / 6894.76).toFixed(3));
+        return Number((value / 6894.76).toFixed(2));
     }
 
     if(unitType === 'km/h' || unitType === 'Km/h') {
