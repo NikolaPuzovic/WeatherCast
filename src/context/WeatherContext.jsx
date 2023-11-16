@@ -43,7 +43,7 @@ export const WeatherDataProvider = ({children}) => {
 
     return (
         <WeatherContext.Provider
-            value={{weatherData, locationData}}
+            value={{weatherData, locationData, setCoordinates}}
         >
             {children}
         </WeatherContext.Provider>

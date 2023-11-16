@@ -1,6 +1,7 @@
 // CONTEXT
 
 import { useUnitType } from '../context/UnitContext';
+import { useWeatherData } from '../context/WeatherContext';
 
 //  COMPONENTS
 
