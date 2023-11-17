@@ -48,7 +48,7 @@ const getWeatherDescription = (weatherCode) => {
         case 71:
         case 73:
         case 75: {
-            description = 'Snow fall';
+            description = 'Snow Fall';
             break;
         }
         case 77: {
