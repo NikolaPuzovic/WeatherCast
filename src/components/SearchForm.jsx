@@ -8,6 +8,8 @@ import { useWeatherData } from '../context/WeatherContext';
 // UTILITY FUNCTIONS
 
 import capitalizeWords from '../utility/capitalizeWords';
+import checkForError from '../utility/checkForError';
+import parseJson from '../utility/parseJson';
 
 // COMPONENTS
 
@@ -33,16 +35,20 @@ const SearchForm = () => {
         e.preventDefault();
         
         const locationName = capitalizeWords(inputValue);
+        const geocodingApi = `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`;
 
-        const cities = citiesArray.filter(location => location.name === locationName);
-        const sortedCities = cities.sort((a, b) => b.pop - a.pop);
-        
-        const {lat, lon} = sortedCities[0];
-
-        setCoordinates({
-            lat,
-            lon
-        });
+        fetch(geocodingApi)
+            .then(response => checkForError(response))
+            .then(data => parseJson(data))
+            .then(locationsArray => {
+                const {latitude, longitude} = locationsArray.results[0];
+                
+                setCoordinates({
+                    lat: latitude,
+                    lon: longitude
+                });
+            })
+            .catch(error => alert(error));
 
         setInputValue('');
     };
