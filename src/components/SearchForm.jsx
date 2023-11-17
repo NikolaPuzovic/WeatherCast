@@ -40,15 +40,18 @@ const SearchForm = () => {
             .then(response => checkForError(response))
             .then(data => parseJson(data))
             .then(locationsArray => {
-                
-                const {latitude, longitude} = locationsArray.results[0];
-                
-                setCoordinates({
-                    lat: latitude,
-                    lon: longitude
-                });
+                if(locationsArray.results) {
+                    const {latitude, longitude} = locationsArray.results[0];
+                    
+                    setCoordinates({
+                        lat: latitude,
+                        lon: longitude
+                    });
+                    return;
+                }
+                throw new Error(`Unable to find the location or it doesn't exist. Please check for any typing errors.`);
             })
-            .catch(error => alert(error));
+            .catch(error => alert(error.message));
 
         setInputValue('');
     };
