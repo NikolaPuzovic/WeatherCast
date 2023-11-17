@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import citiesArray from '../cities.json';
 
 // CONTEXT
 
