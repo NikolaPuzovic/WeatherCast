@@ -116,7 +116,7 @@ const CurrentWeather = () => {
             <Highlights
                 icon={wind_icon}
                 text='Wind Speed'
-                value={windSpeed}
+                value={roundNumber(windSpeed)}
                 unit={unitType === 'imperial' ? 'mph': 'km/h'}
             />
             <Highlights
