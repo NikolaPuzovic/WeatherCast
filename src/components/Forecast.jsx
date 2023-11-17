@@ -9,6 +9,7 @@ import convertToImperial from '../utility/convertToImperial';
 import roundNumber from '../utility/roundNumber';
 import getIcon from '../utility/getIcon';
 import parseDate from '../utility/parseDate';
+import getWeatherDescription from '../utility/getWeatherDescription';
 
 // COMPONENTS
 
@@ -54,8 +55,11 @@ const Forecast = () => {
                 key={nanoid()}
                 className='card'
             >
-            <Text className='text_small'>
+            <Text className='text_m'>
                 {indx === 1 ? 'Tomorrow' : parseDate(time[indx], 'day')}
+            </Text>
+            <Text className='text_s'>
+                {getWeatherDescription(weather_code[indx])}
             </Text>
             <Icon
                 className='icon_medium'

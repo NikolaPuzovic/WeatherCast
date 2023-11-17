@@ -40,6 +40,7 @@ const SearchForm = () => {
             .then(response => checkForError(response))
             .then(data => parseJson(data))
             .then(locationsArray => {
+                
                 const {latitude, longitude} = locationsArray.results[0];
                 
                 setCoordinates({
@@ -62,6 +63,7 @@ const SearchForm = () => {
                 placeholder='search...'
                 value={inputValue}
                 onChange={changeInputValue}
+                spellCheck={false}
             />
             <Button className='search_button'>
                 <Icon

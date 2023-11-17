@@ -10,6 +10,7 @@ import getWeatherDescription from '../utility/getWeatherDescription';
 import getIcon from '../utility/getIcon';
 import convertToImperial from '../utility/convertToImperial';
 import getWindDirection from '../utility/getWindDirection';
+import parseDate from '../utility/parseDate';
 
 // COMPONENTS
 
@@ -35,6 +36,7 @@ const CurrentWeather = () => {
             current: {
                 temperature_2m: currentTemp,
                 weather_code,
+                time,
                 relative_humidity_2m: humidity,
                 pressure_msl: pressure,
                 wind_speed_10m: windSpeed,
@@ -46,12 +48,16 @@ const CurrentWeather = () => {
             }
         },
         locationData: {
-            city 
+            city,
+            countryName
         }
     } = useWeatherData();
 
     let minTemp = temperature_2m_min[0];
     let maxTemp = temperature_2m_max[0];
+
+    const date = parseDate(time, 'date');
+    const month = parseDate(time, 'month');
 
     const { unitType } = useUnitType();
 
@@ -66,11 +72,14 @@ const CurrentWeather = () => {
 
     const locationCard = (
         <Card className='card'>
-            <Text className='text_large'>
+            <Text className='text_xl'>
                 {city}
             </Text>
-            <Text className='text_small'>
-                Today 12 Dec
+            <Text className='text_s'>
+                {countryName}
+            </Text>
+            <Text className='text_m'>
+                Today {date} {month}
             </Text>
             <ValueUnit
                 className='large'
@@ -82,7 +91,7 @@ const CurrentWeather = () => {
 
     const weatherConditionCard = (
         <Card className='card'>
-            <Text className='text_small'>
+            <Text className='text_m'>
                 {getWeatherDescription(weather_code)}
             </Text>
             <Icon

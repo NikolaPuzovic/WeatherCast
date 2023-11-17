@@ -10,7 +10,7 @@ const Highlights = ({text, icon, value, unit}) => {
                 alt={text}
                 className='icon_small'
             />
-            <Text className='text_small'>
+            <Text className='text_m'>
                 {text}
             </Text>
             <ValueUnit
