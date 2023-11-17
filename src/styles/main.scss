@@ -213,4 +213,12 @@
             margin-right: 0;
         }
     }
+
+    .button {
+        transition: 0.1s linear 0s;
+
+        &:hover {
+            transform: scale(0.93);
+        }
+    }
 }
