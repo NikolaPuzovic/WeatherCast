@@ -27,9 +27,11 @@ const Header = () => {
     const { setCoordinates } = useWeatherData();
 
     const goToUserLocation = () => {
+        const errorMessage = 'Access to your location is not possible as the location feature is not enabled. To continue, go to settings and grant location access for our app.';
+
         getLocation(
             (coordsObj) => setCurrentLocation(coordsObj, setCoordinates),
-            (error) => alert(error)
+            (error) => alert(errorMessage)
         );
     };
 

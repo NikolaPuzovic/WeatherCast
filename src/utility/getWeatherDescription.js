@@ -18,52 +18,88 @@ const getWeatherDescription = (weatherCode) => {
             description = 'Overcast';
             break;
         }
-        case 45:
-        case 48: {
+        case 45: {
             description = 'Fog';
             break;
         }
-        case 51:
-        case 53:
+        case 48: {
+            description = 'Depositing Fog';
+            break;
+        }
+        case 51: {
+            description = 'Light Drizzle';
+            break;
+        }
+        case 53: {
+            description = 'Moderate Drizzle';
+            break;
+        }
         case 55: {
-            description = 'Drizzle';
+            description = 'Dense Drizzle';
             break;
         }
-        case 56:
+        case 56: {
+            description = 'Light Freezing Drizzle';
+            break;
+        }
         case 57: {
-            description = 'Freezing Drizzle';
+            description = 'Dense Freezing Drizzle';
             break;
         }
-        case 61:
-        case 63:
+        case 61: {
+            description = 'Slight Rain';
+            break;
+        }
+        case 63: {
+            description = 'Moderate Rain';
+            break;
+        }
         case 65: {
-            description = 'Rain';
+            description = 'Heavy Rain';
             break;
         }
-        case 66:
+        case 66: {
+            description = 'Light Freezing Rain';
+            break;
+        }
         case 67: {
-            description = 'Freezing Rain';
+            description = 'Heavy Freezing Rain';
             break;
         }
-        case 71:
-        case 73:
+        case 71: {
+            description = 'Slight Snow Fall';
+            break;
+        }
+        case 73: {
+            description = 'Moderate Snow Fall';
+            break;
+        }
         case 75: {
-            description = 'Snow Fall';
+            description = 'Heavy Snow Fall';
             break;
         }
         case 77: {
             description = 'Snow Grains';
             break;
         }
-        case 80:
-        case 81:
-        case 82: {
-            description = 'Rain Snower';
+        case 80: {
+            description = 'Slight Rain Shower';
             break;
         }
-        case 85:
+        case 81: {
+            description = 'Moderate Rain Shower';
+            break;
+        }
+        case 82: {
+            description = 'Violent Rain Shower';
+            break;
+        }
+        case 85: {
+            description = 'Slight Snow Shower';
+            break;
+        }
         case 86: {
-            description = 'Snow Shower';
+            description = 'Heavy Snow Shower';
             break;
         }
         case 95: {

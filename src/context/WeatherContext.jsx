@@ -12,10 +12,12 @@ export const WeatherDataProvider = ({children}) => {
     const [weatherData, setWeatherData] = useState({});
     const [locationData, setLocationData] = useState(null);
 
+    const errorMessage = 'Access to your location is not possible as the location feature is not enabled. To continue, go to settings and grant location access for our app.';
+
     useEffect(() => {
         getLocation(
             (coordsObj) => setCurrentLocation(coordsObj, setCoordinates),
-            (error) => alert(error)
+            () => alert(errorMessage)
         );
     }, []);
 

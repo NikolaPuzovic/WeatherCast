@@ -58,7 +58,13 @@
 
 // SEARCH FORM
 
+.form_container {
+    position: relative;
+}
+
 .search_form {
+    z-index: 1;
+    position: relative;
     min-height: 2.4rem;
     padding-left: 1rem;
     border-radius: 1.25rem 1.25rem 1.25rem 1.25rem;
@@ -74,6 +80,26 @@
         &::placeholder {
             color: $font-color;
         }
+    }
+}
+
+.search_results {
+    position: absolute;
+    width: 100%;
+    border-radius: 1.25rem 1.25rem;
+    list-style: none;
+    color: $font-color;
+    padding: {
+        top: 2.8rem;
+        inline: 1rem;
+        bottom: 1rem;
+    }
+    background-color: $element-background;
+    z-index: 0;
+    top: 0;
+
+    & > li:hover {
+        cursor: pointer;
     }
 }
 
@@ -157,7 +183,7 @@
 
 .text_xl {
     @extend .text;
-    word-break: break-all;
+    word-break: break-word;
     font: {
         size: 2.6rem;
         weight: 600;
@@ -217,8 +243,8 @@
     .button {
         transition: 0.1s linear 0s;
 
-        &:hover {
-            transform: scale(0.93);
+        &:active {
+            transform: scale(0.8);
         }
     }
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // CONTEXT
 
@@ -14,20 +14,35 @@ import parseJson from '../utility/parseJson';
 
 import Button from './Button';
 import Icon from './Icon';
+import SearchResults from './SearchResults';
 
 // ICONS
 
 import search_icon from '../assets/search.svg';
 
-
 const SearchForm = () => {
 
+    const [jsonData, setJsonData] = useState([]);
+    const [filteredData, setFilteredData] = useState(null);
     const [inputValue, setInputValue] = useState('');
+
+    useEffect(() => {
+        const importData = async () => {
+            const {default: locations} = await import('../cities.json');
+            setJsonData(locations);
+        }
+        importData();
+    }, []);
 
     const { setCoordinates } = useWeatherData();
 
-    const changeInputValue = (e)=> {
-        setInputValue(e.target.value);
+    const filterData = (e)=> {
+        const {value} = e.target;
+        const input = new RegExp(value, 'i');
+        const filteredData = jsonData.filter(location => input.test(location.name)).slice(0, 10);
+
+        setFilteredData(filteredData);
+        setInputValue(value);
     };
 
     const setLatLong = (e) => {
@@ -56,25 +71,39 @@ const SearchForm = () => {
         setInputValue('');
     };
 
+    const selectLocation = (e) => {
+        const {innerText: locationName} = e.target;
+        setInputValue(locationName);
+        setFilteredData(null);
+    }
+
     return (
-        <form
-            className='search_form'
-            onSubmit={setLatLong}
-        >
-            <input
-                type='text'
-                placeholder='search...'
-                value={inputValue}
-                onChange={changeInputValue}
-                spellCheck={false}
-            />
-            <Button className='search_button'>
-                <Icon
-                    src={search_icon}
-                    alt='search icon'
+        <div className='form_container'>
+            <form
+                className='search_form'
+                onSubmit={setLatLong}
+            >
+                <input
+                    type='text'
+                    placeholder='search...'
+                    value={inputValue}
+                    onChange={filterData}
+                    spellCheck={false}
                 />
-            </Button>
-        </form>
+                <Button className='search_button'>
+                    <Icon
+                        src={search_icon}
+                        alt='search icon'
+                    />
+                </Button>
+            </form>
+            {filteredData && inputValue &&
+                    <SearchResults
+                        dataArray={filteredData}
+                        onClick={selectLocation}
+                    />
+            }
+        </div>
     );
 };
 
