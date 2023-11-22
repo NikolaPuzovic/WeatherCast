@@ -75,7 +75,7 @@ const CurrentWeather = () => {
             <Text className='text_xl'>
                 {city}
             </Text>
-            <Text className='text_s'>
+            <Text className='text_m'>
                 {countryName}
             </Text>
             <Text className='text_m'>

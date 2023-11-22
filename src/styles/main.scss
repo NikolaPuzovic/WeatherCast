@@ -98,6 +98,11 @@
     z-index: 0;
     top: 0;
 
+    & > li {
+        font-size: 0.85rem;
+        margin-block: 0.75rem;
+    }
+
     & > li:hover {
         cursor: pointer;
     }
@@ -110,7 +115,7 @@
     padding: 1rem;
     justify-items: center;
     align-items: center;
-    background-color: $element-background;
+    background-color: $card-background;
     border-radius: 1.25rem;
 }
 
@@ -167,7 +172,8 @@
 
 .text_s {
     @extend .text;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
 }
 
 .text_m {

@@ -47,35 +47,50 @@ const SearchForm = () => {
 
     const setLatLong = (e) => {
         e.preventDefault();
-        
-        const locationName = capitalizeWords(inputValue);
-        const geocodingApi = `https://geocoding-api.open-meteo.com/v1/search?name=${locationName}&count=10&language=en&format=json`;
+          
+        try {
+            const [location, country] = inputValue.split(',');
 
-        fetch(geocodingApi)
-            .then(response => checkForError(response))
-            .then(data => parseJson(data))
-            .then(locationsArray => {
-                if(locationsArray.results) {
-                    const {latitude, longitude} = locationsArray.results[0];
-                    
-                    setCoordinates({
-                        lat: latitude,
-                        lon: longitude
-                    });
+            if(location && country) {
+                const locationName = capitalizeWords(location.trim());
+                const countryName = capitalizeWords(country.trim());
+                
+                const locationsArray = jsonData.filter(location => location.name === locationName && location.country === countryName);
+
+                if(locationsArray.length > 0) {
+                    const {coords: {lat, lon}} = locationsArray[0];
+                    setCoordinates({lat, lon});
+                    setInputValue('');
                     return;
                 }
                 throw new Error(`Unable to find the location or it doesn't exist. Please check for any typing errors.`);
-            })
-            .catch(error => alert(error.message));
+            }
+            if(location) {
+                const locationName = capitalizeWords(location.trim());
 
-        setInputValue('');
+                const locationsArray = jsonData.filter(location => location.name === locationName);
+
+                if(locationsArray.length > 0) {
+                    const locations = locationsArray.sort((a, b) => b.pop - a.pop)[0];
+                    const {coords: {lat, lon}} = locations;
+                    setCoordinates({lat, lon});
+                    setInputValue('');
+                    return;
+                }
+                throw new Error(`Unable to find the location or it doesn't exist. Please check for any typing errors.`);
+            }
+            throw new Error(`Searchbar is empty, please provide location name.`);
+        } catch(error) {
+            alert(error.message);
+        }
     };
 
-    const selectLocation = (e) => {
-        const {innerText: locationName} = e.target;
-        setInputValue(locationName);
+    const selectLocation = (coords) => {
+        const {lat, lon} = coords;
+        setCoordinates({lat, lon});
         setFilteredData(null);
-    }
+        setInputValue('');
+    };
 
     return (
         <div className='form_container'>
