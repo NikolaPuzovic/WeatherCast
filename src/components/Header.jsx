@@ -1,3 +1,9 @@
+//  COMPONENTS
+
+import Icon from './Icon';
+import Button from './Button';
+import SearchForm from './SearchForm';
+
 // CONTEXT
 
 import { useUnitType } from '../context/UnitContext';
@@ -7,12 +13,6 @@ import { useWeatherData } from '../context/WeatherContext';
 
 import getLocation from '../utility/getLocation';
 import setCurrentLocation from '../utility/setCurrentLocation';
-
-//  COMPONENTS
-
-import Icon from './Icon';
-import Button from './Button';
-import SearchForm from './SearchForm';
 
 // ICONS
 

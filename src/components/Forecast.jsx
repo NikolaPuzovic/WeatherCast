@@ -1,3 +1,10 @@
+// COMPONENTS
+
+import Card from '../components/Card';
+import Text from './Text';
+import Icon from './Icon';
+import MinMaxTemp from './MinMaxTemp';
+
 // CONTEXT
 
 import { useWeatherData } from '../context/WeatherContext';
@@ -10,14 +17,6 @@ import roundNumber from '../utility/roundNumber';
 import getIcon from '../utility/getIcon';
 import parseDate from '../utility/parseDate';
 import getWeatherDescription from '../utility/getWeatherDescription';
-
-// COMPONENTS
-
-import Card from '../components/Card';
-import Text from './Text';
-import Icon from './Icon';
-import MinMaxTemp from './MinMaxTemp';
-
 import { nanoid } from 'nanoid';
 
 

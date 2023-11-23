@@ -1,5 +1,10 @@
+// COMPONENTS
+
 import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
+
+// CONTEXT
+
 import { useWeatherData } from '../context/WeatherContext';
 
 const MainContent = () => {

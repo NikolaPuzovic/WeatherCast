@@ -1,8 +1,12 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+
+// UTILITY FUNCTIONS
+
 import setCurrentLocation from '../utility/setCurrentLocation';
 import checkForError from '../utility/checkForError';
 import parseJson from '../utility/parseJson';
 import getLocation from '../utility/getLocation';
+
 
 const WeatherContext = createContext(null);
 

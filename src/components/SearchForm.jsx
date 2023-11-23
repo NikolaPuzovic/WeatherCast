@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
 
+// COMPONENTS
+
+import Button from './Button';
+import Icon from './Icon';
+import SearchResults from './SearchResults';
+
 // CONTEXT
 
 import { useWeatherData } from '../context/WeatherContext';
@@ -7,14 +13,6 @@ import { useWeatherData } from '../context/WeatherContext';
 // UTILITY FUNCTIONS
 
 import capitalizeWords from '../utility/capitalizeWords';
-import checkForError from '../utility/checkForError';
-import parseJson from '../utility/parseJson';
-
-// COMPONENTS
-
-import Button from './Button';
-import Icon from './Icon';
-import SearchResults from './SearchResults';
 
 // ICONS
 

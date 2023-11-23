@@ -1,3 +1,12 @@
+// COMPONENTS
+
+import Card from './Card';
+import Icon from './Icon';
+import Text from './Text';
+import ValueUnit from './ValueUnit';
+import MinMaxTemp from './MinMaxTemp';
+import Highlights from './Highlights';
+
 // CONTEXT
 
 import { useWeatherData } from '../context/WeatherContext';
@@ -11,15 +20,6 @@ import getIcon from '../utility/getIcon';
 import convertToImperial from '../utility/convertToImperial';
 import getWindDirection from '../utility/getWindDirection';
 import parseDate from '../utility/parseDate';
-
-// COMPONENTS
-
-import Card from './Card';
-import Icon from './Icon';
-import Text from './Text';
-import ValueUnit from './ValueUnit';
-import MinMaxTemp from './MinMaxTemp';
-import Highlights from './Highlights';
 
 // ICONS
 
@@ -132,7 +132,6 @@ const CurrentWeather = () => {
                 icon={direction_icon}
                 text='Wind Direction'
                 value={getWindDirection(windDirection)}
-                unit=''
             />
         </Card>
     );

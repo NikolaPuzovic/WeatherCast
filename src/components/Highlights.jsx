@@ -1,3 +1,5 @@
+// COMPONENTS
+
 import Icon from './Icon';
 import Text from './Text';
 import ValueUnit from './ValueUnit';

@@ -1,3 +1,5 @@
+// COMPONENTS
+
 import ValueUnit from './ValueUnit';
 
 const MinMaxTemp = ({className, min, max, unit}) => {
