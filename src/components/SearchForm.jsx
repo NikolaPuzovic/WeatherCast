@@ -38,6 +38,7 @@ const SearchForm = () => {
         const {value} = e.target;
         const input = new RegExp(value, 'i');
         const filteredData = jsonData.filter(location => input.test(location.name)).slice(0, 10);
+        filteredData.sort((a, b) => b.pop - a.pop);
 
         setFilteredData(filteredData);
         setInputValue(value);
